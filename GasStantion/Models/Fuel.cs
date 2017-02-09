@@ -5,18 +5,23 @@ namespace GasStantion.Models
     /// <summary>
     /// Цена на топливо (марку)
     /// </summary>
-    public class FuelPrice : Entity
+    public class Fuel : Entity
     {
         /// <summary>
-        /// Марка бензна
+        /// Марка топлива
         /// </summary>
-        [Required(ErrorMessage ="Требуется марка топлива")]
+        [Required(ErrorMessage = "Требуется марка топлива")]
         [MaxLength(10, ErrorMessage = "Длина марки топлива не может быть больше 10 символов")]
-        public string PetroliumName { get; set; }
+        public string FuelName { get; set; }
 
         /// <summary>
-        /// Цена бензина в рублях
+        /// Цена литра топлива в рублях
         /// </summary>
         public double Price { get; set; }
+
+        /// <summary>
+        /// Описание топлива
+        /// </summary>
+        public string FuelDescription { get; set; }
     }
 }

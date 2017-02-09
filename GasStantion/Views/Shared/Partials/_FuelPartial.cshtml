@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GasStantion.Models.FuelPrice>
+﻿@model IEnumerable<GasStantion.ViewModels.FuelPriceListItemViewModel>
     
 <div class="fueld-price-block">
     <div class="title">
@@ -9,7 +9,7 @@
             @foreach (var fuelPrice in Model)
             {
                 <tr>
-                    <td class="fuel-name">@fuelPrice.PetroliumName</td>
+                    <td class="fuel-name"><a href="@Url.Action("Type","Fuel", new {id=fuelPrice.Id})">@fuelPrice.FuelName</a></td>
                     <td class="fuel-price">@fuelPrice.Price</td>
                 </tr>
             }

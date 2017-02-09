@@ -21,7 +21,7 @@ namespace GasStantion.EntityFramework
         public IDbSet<Page> Pages { get; set; }
         public IDbSet<Document> Documents { get; set; } 
         public IDbSet<DocumentImage> DocumentImages { get; set; }
-        public IDbSet<FuelPrice> FuelPrices { get; set; } 
+        public IDbSet<Fuel> Fuels { get; set; } 
         public IDbSet<UserFeedback> UserFeedbacks { get; set; } 
     }
 }

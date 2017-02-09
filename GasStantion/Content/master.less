@@ -25,6 +25,24 @@ div, span, nav {
     //border: 1px solid;
 }
 
+//Миксин, чтобы убрать все подчеркивания и прочее
+//с ссылок
+.no-a(@color)
+{
+    color: @color;
+    text-decoration: none;
+
+    &:hover,active
+    {
+        color: @color;
+        text-decoration: none;
+    }
+}
+
+
+
+
+
 .my-container {
     width: @page-width;
     margin: 0 auto;
@@ -93,8 +111,14 @@ div, span, nav {
         text-align: center;
     }
 
-    .fuel-name {
-        color: #FFF;
+    .fuel-name a {
+        .no-a(#FFF);
+        transition: 0.1s color linear;
+
+        &:hover
+        {
+            color: @primary-color;
+        }
     }
 
     .fuel-price {
@@ -118,6 +142,9 @@ nav {
     }
 
     li a {
+
+        .no-a(#000);
+
         display: inline-block;
         padding: 10px;
         font-size: 1.5rem;
@@ -125,15 +152,11 @@ nav {
         transition: background-color 0.1s linear;
         border: 2px solid @background-color;
         cursor: pointer;
-        text-decoration: none;
-        color: #000;
     }
 
     li a:hover {
         border: 2px solid @primary-color;
         background-color: #fef2be;
-        text-decoration: none;
-        color: #000;
     }
 }
 

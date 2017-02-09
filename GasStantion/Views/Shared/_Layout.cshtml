@@ -22,7 +22,8 @@
                     <nav>
                         <ul>
                             <li><a href="@Url.Action("Index","Home")">Главная</a></li>
-                            <li><a href="@Url.Action("Index","News")">Новости</a></li>
+                            <li><a href="@Url.Action("Index", "News")">Новости</a></li>
+                            <li><a href="@Url.Action("Index","Fuel")">Топливо</a></li>
                             @Html.Action("Menu","Layout")
                             <li><a href="@Url.Action("Index","Documents")">Документы</a></li>
                             <li><a href="@Url.Action("Contacts","Home")">Контакты</a></li>
@@ -39,7 +40,7 @@
 
     <footer>
         <div class="my-container">
-            Бла-бла-бла
+            АГЗС «Пионер»  @DateTime.Now.Year
         </div>
     </footer>
 </body>

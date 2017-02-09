@@ -41,7 +41,15 @@ namespace GasStantion.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
-                var model = context.FuelPrices.ToList();
+                var model = context.Fuels
+                    .Select(x => new FuelPriceListItemViewModel()
+                    {
+                        Id = x.Id,
+                        FuelName = x.FuelName,
+                        Price = x.Price
+                    })
+                    .ToList();
+
                 return PartialView("Partials/_FuelPartial", model);
             }
 

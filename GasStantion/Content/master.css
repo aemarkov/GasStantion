@@ -64,8 +64,18 @@ body {
   padding: 8px;
   text-align: center;
 }
-.fueld-price-block .fuel-name {
+.fueld-price-block .fuel-name a {
   color: #FFF;
+  text-decoration: none;
+  transition: 0.1s color linear;
+}
+.fueld-price-block .fuel-name a:hover,
+.fueld-price-block .fuel-name a active {
+  color: #FFF;
+  text-decoration: none;
+}
+.fueld-price-block .fuel-name a:hover {
+  color: #fecf00;
 }
 .fueld-price-block .fuel-price {
   color: #fecf00;
@@ -82,6 +92,8 @@ nav li {
   display: inline-block;
 }
 nav li a {
+  color: #000;
+  text-decoration: none;
   display: inline-block;
   padding: 10px;
   font-size: 1.5rem;
@@ -89,14 +101,15 @@ nav li a {
   transition: background-color 0.1s linear;
   border: 2px solid #fff;
   cursor: pointer;
-  text-decoration: none;
+}
+nav li a:hover,
+nav li a active {
   color: #000;
+  text-decoration: none;
 }
 nav li a:hover {
   border: 2px solid #fecf00;
   background-color: #fef2be;
-  text-decoration: none;
-  color: #000;
 }
 .page-wrapper {
   min-height: 100%;

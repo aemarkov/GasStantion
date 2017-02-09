@@ -1,0 +1,12 @@
+﻿@model IEnumerable<GasStantion.ViewModels.FuelListItemViewModel>
+
+<h2>Виды топлива</h2>
+
+<ul>
+    @foreach (var fuel in Model)
+    {
+        <li>
+            <a href="@Url.Action("Type","Fuel", new {id= fuel.Id })">@fuel.FuelName</a>
+        </li>
+    }
+</ul>
