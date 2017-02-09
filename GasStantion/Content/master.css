@@ -103,7 +103,7 @@ nav li a:hover {
   margin-bottom: -50px;
 }
 .push {
-  height: 50px;
+  height: 100px;
 }
 footer {
   height: 50px;
@@ -144,4 +144,12 @@ footer {
   width: 32px !important;
   height: 32px !important;
   margin: 3px;
+}
+.tags-panel {
+  width: 100%;
+  background-color: #fafafa;
+  margin-top: 50px;
+}
+.feedback-user-name {
+  font-size: 1.8rem;
 }

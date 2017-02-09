@@ -1,0 +1,12 @@
+﻿@model IEnumerable<GasStantion.ViewModels.DocumentListItemViewModel>
+
+<h2>Документы</h2>
+
+<ul>
+    @foreach (var document in Model)
+    {
+        <li>
+            <a href="@Url.Action("Document","Documents", new {id=document.Id})">@document.DocumentName</a>
+        </li>
+    }
+</ul>

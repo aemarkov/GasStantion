@@ -1,0 +1,8 @@
+﻿@model IEnumerable<GasStantion.Models.News>
+
+<h2>Новости</h2>
+
+@foreach (var news in Model)
+{
+    @Html.Partial("Partials/_NewsCardPartial",news)
+}

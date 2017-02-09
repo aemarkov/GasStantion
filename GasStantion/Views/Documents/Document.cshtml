@@ -1,0 +1,10 @@
+﻿@model GasStantion.Models.Document
+
+<h2>@Model.DocumentName</h2>
+
+@foreach (var image in Model.Images)
+{
+    <div>
+        <img src="@image.ImageUrl"/>
+    </div>
+}

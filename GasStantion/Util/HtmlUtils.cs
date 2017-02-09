@@ -9,10 +9,12 @@ namespace GasStantion.Util
     /// </summary>
     public static class HtmlUtils
     {
+        private const int TextMaxLength = 150;
+
         public static string Cut(string text)
         {
-            if (text.Length > 256)
-                return text.Substring(0, Math.Min(256, text.Length - 1)) + "...";
+            if (text.Length > TextMaxLength)
+                return text.Substring(0, Math.Min(TextMaxLength, text.Length - 1)) + "...";
             else
                 return text;
         }

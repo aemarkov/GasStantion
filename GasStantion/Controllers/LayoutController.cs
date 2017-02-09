@@ -33,7 +33,7 @@ namespace GasStantion.Controllers
         //Шапка
         public PartialViewResult Header()
         {
-            return PartialView("Partials/_HeaderPartial",new HeaderViewModel() {Title = "123", Phone = "456"});
+            return PartialView("Partials/_HeaderPartial",new HeaderViewModel() {Title = "АГЗС «Пионер»", Phone = "8-969-290-54-93" });
         }
 
         //Цены на газ

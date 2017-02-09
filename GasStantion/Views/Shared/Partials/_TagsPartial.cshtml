@@ -1,0 +1,11 @@
+﻿@model IEnumerable<GasStantion.Models.Tag>
+
+<div class="tags-panel">
+    <div>
+        Теги:
+    </div>
+    @foreach (var tag in Model)
+    {
+        <span class="glyphicon glyphicon-tag"></span><a href="@Url.Action("ByTag", "News", new {id = tag.Id})">@tag.TagName</a>
+    }
+</div>

@@ -1,0 +1,7 @@
+﻿@model GasStantion.Models.News
+
+<h2>@Model.Title</h2>
+
+@Html.Raw(Model.Text)
+
+@Html.Partial("Partials/_TagsPartial", Model.Tags)
