@@ -21,5 +21,10 @@ namespace GasStantion.Models
         /// </summary>
         [Required(ErrorMessage = "Требуется текст страницы")]
         public string Text { get; set; }
+
+        /// <summary>
+        /// Будет ли этот текст отображаться не отдельной страницей, а на главной
+        /// </summary>
+        public bool IsMainPage { get; set; }
     }
 }

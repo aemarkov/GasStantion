@@ -1,1 +1,17 @@
-﻿<h2>Контакты</h2>
+﻿@model GasStantion.Models.ContactsInfo
+
+
+<h2>Контакты</h2>
+
+<div class="contacts-element">
+    <img src="~/Images/phone2.png"/>
+    <span>@Model.Phone</span>
+</div>
+
+<div class="contacts-element">
+    <img src="~/Images/address.png"/>
+    <span>@Model.Address</span>
+</div>
+
+<h3>Карта</h3>
+<script type="text/javascript" charset="utf-8" async src="@Model.YandexMapUrl"></script>

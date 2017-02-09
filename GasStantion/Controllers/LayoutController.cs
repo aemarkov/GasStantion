@@ -19,6 +19,7 @@ namespace GasStantion.Controllers
             using (var context = new ApplicationDbContext())
             {
                 var model = context.Pages
+                    .Where(x=>!x.IsMainPage)
                     .Select(x => new MenuItemViewModel()
                     {
                         Id = x.Id,
@@ -33,7 +34,19 @@ namespace GasStantion.Controllers
         //Шапка
         public PartialViewResult Header()
         {
-            return PartialView("Partials/_HeaderPartial",new HeaderViewModel() {Title = "АГЗС «Пионер»", Phone = "8-969-290-54-93" });
+            using (var context = new ApplicationDbContext())
+            {
+                var model = context.Contacts
+                    .Select(x => new HeaderViewModel()
+                    {
+                        Title = x.CompanyName,
+                        Phone = x.Phone
+                    })
+                    .FirstOrDefault();
+
+                return PartialView("Partials/_HeaderPartial", model);
+            }
+
         }
 
         //Цены на газ

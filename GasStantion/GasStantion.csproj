@@ -187,7 +187,16 @@
     <Compile Include="Migrations\201702092044455_Change_Fuel_Model.Designer.cs">
       <DependentUpon>201702092044455_Change_Fuel_Model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702092127194_Add_Contacts.cs" />
+    <Compile Include="Migrations\201702092127194_Add_Contacts.Designer.cs">
+      <DependentUpon>201702092127194_Add_Contacts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702092132552_Add_IsMainPage_To_Page.cs" />
+    <Compile Include="Migrations\201702092132552_Add_IsMainPage_To_Page.Designer.cs">
+      <DependentUpon>201702092132552_Add_IsMainPage_To_Page.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ContactsInfo.cs" />
     <Compile Include="Util\HtmlUtils.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\Document.cs" />
@@ -222,8 +231,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\address.png" />
     <Content Include="Images\anon.png" />
     <Content Include="Images\licence.jpg" />
+    <Content Include="Images\phone.png" />
+    <Content Include="Images\phone2.png" />
     <Content Include="Images\picture.png" />
     <Content Include="Images\star-empty.png" />
     <Content Include="Images\star-fill.png" />
@@ -319,6 +331,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702092044455_Change_Fuel_Model.resx">
       <DependentUpon>201702092044455_Change_Fuel_Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702092127194_Add_Contacts.resx">
+      <DependentUpon>201702092127194_Add_Contacts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702092132552_Add_IsMainPage_To_Page.resx">
+      <DependentUpon>201702092132552_Add_IsMainPage_To_Page.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

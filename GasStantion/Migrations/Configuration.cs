@@ -1,3 +1,6 @@
+﻿using GasStantion.EntityFramework;
+using GasStantion.Models;
+
 namespace GasStantion.Migrations
 {
     using System;
@@ -26,6 +29,34 @@ namespace GasStantion.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            CreateContacts(context);
+            CreateHomePageText(context);
+
+            context.SaveChanges();
+        }
+
+        //Создает запись контактов
+        private void CreateContacts(ApplicationDbContext context)
+        {
+            if (!context.Contacts.Any())
+            {
+                context.Contacts.Add(new ContactsInfo());
+            }
+        }
+
+        //Создает текст для главной страницы
+        private void CreateHomePageText(ApplicationDbContext context)
+        {
+            if(!context.Pages.Any(x=>x.IsMainPage))
+            {
+                context.Pages.Add(new Page()
+                {
+                    IsMainPage = true,
+                    Title = "Главная",
+                    Text = "Текст на главной"
+                });
+            }
         }
     }
 }

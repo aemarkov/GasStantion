@@ -173,3 +173,11 @@ footer {
 .feedback-user-name {
   font-size: 1.8rem;
 }
+.contacts-element img {
+  height: 64px;
+  width: 64px;
+  margin: 20px;
+}
+.contacts-element span {
+  font-size: 2rem;
+}

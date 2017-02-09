@@ -27,9 +27,12 @@ namespace GasStantion.Controllers
                     .Take(10)
                     .ToList();
 
+                //Текст на главной
+                var main = context.Pages.FirstOrDefault(x => x.IsMainPage);
+
                 return View(new IndexViewModel()
                 {
-                    AboutText = "About",
+                    AboutText = main?.Text,
                     News = news,
                     Feedbacks = feebacks
                 });
@@ -52,7 +55,12 @@ namespace GasStantion.Controllers
 
         public ActionResult Contacts()
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                var contacts = context.Contacts.FirstOrDefault();
+
+                return View(contacts);
+            }
         }
 
 

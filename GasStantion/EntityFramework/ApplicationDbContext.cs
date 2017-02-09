@@ -23,5 +23,6 @@ namespace GasStantion.EntityFramework
         public IDbSet<DocumentImage> DocumentImages { get; set; }
         public IDbSet<Fuel> Fuels { get; set; } 
         public IDbSet<UserFeedback> UserFeedbacks { get; set; } 
+        public IDbSet<ContactsInfo> Contacts { get; set; } 
     }
 }
