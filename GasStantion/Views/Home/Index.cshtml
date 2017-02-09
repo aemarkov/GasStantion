@@ -13,6 +13,10 @@
     @Html.Partial("Partials/_NewsCardPartial", news)    
 }
 
+<div class="align-center">
+    <a href="@Url.Action("Index", "News")" class="btn btn-warning">Все новости</a>
+</div>
+
 <hr/>
 
 <h2>Отзывы</h2>
@@ -21,3 +25,7 @@
 {
     @Html.Partial("Partials/_FeedbackPartial", feedback)
 }
+
+<div class="align-center">
+    <a href="@Url.Action("Index", "Feedback")" class="btn btn-warning">Все отзывы</a>
+</div>

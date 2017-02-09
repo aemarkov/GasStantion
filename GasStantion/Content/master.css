@@ -8,6 +8,13 @@ body {
   height: 100%;
   background-color: #fff;
 }
+.align-center {
+  text-align: center;
+}
+.validation-summary-errors,
+.field-validation-error {
+  color: #F00;
+}
 .my-container {
   width: 768px;
   margin: 0 auto;

@@ -1,0 +1,12 @@
+﻿@model System.Collections.Generic.List<GasStantion.Models.UserFeedback>
+
+<h2>Отзывы</h2>
+
+<div>
+    <a href="@Url.Action("New","Feedback")">Оставить отзыв</a>
+</div>
+
+@foreach (var feedback in Model)
+{
+    @Html.Partial("Partials/_FeedbackPartial", feedback)
+}

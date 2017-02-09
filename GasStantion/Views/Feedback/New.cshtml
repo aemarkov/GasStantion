@@ -1,0 +1,30 @@
+﻿@model GasStantion.Models.UserFeedback
+
+<h2>Новый отзыв</h2>
+
+<form action="@Url.Action("New", "Feedback")" method="POST">
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "Введенные данные содержат ошибки")
+
+    <div class="form-group">
+        <label for="email">Имя</label>
+        @Html.TextBoxFor(x => x.UserName, new {@class = "form-control"})
+        @Html.ValidationMessageFor(x => x.UserName)
+    </div>
+
+    <div class="form-group">
+        <label for="email">Оценка (0-5)</label>
+        @Html.TextBoxFor(x => x.Stars, new {@class = "form-control", @type="number", @min=0, @max=5})
+        @Html.ValidationMessageFor(x => x.Stars)
+    </div>
+
+    <div class="form-group">
+        <label for="email">Отзыв</label>
+        @Html.TextAreaFor(x => x.Comment, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Comment)
+    </div>
+
+    <button type="submit" class="btn btn-warning">Отправить отзыв</button>
+
+</form>
