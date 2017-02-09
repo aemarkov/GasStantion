@@ -1,0 +1,39 @@
+﻿@using GasStantion.Areas.Admin.ViewModels
+@model GasStantion.Models.News
+
+@{
+    ViewData.AddPath(Url.Action("Index", "AdminNews"), "Новости");
+    ViewData.AddPath(null, Model.Title);
+}
+
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Title)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Title)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Text)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Text)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.PreviewImageUrl)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.PreviewImageUrl)
+    </dd>
+
+</dl>
+
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id })
+</p>

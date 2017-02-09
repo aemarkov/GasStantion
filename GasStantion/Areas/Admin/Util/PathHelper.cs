@@ -7,7 +7,7 @@ namespace GasStantion.Areas.Admin.ViewModels
     {
         public static string PathKey => "__path";
 
-        public static void AddPath(this ViewDataDictionary<dynamic> viewData, string url, string title)
+        public static void AddPath<TModel>(this ViewDataDictionary<TModel> viewData, string url, string title)
         {
             if(viewData==null)
                 return;

@@ -9,9 +9,21 @@
     {
         foreach (PathPart part in ViewData[PathHelper.PathKey] as IEnumerable<PathPart>)
         {
-            <span><a href="@part.Url">@part.Text</a>/</span>
+            if (part.Url != null)
+            {
+                <span><a href="@part.Url">@part.Text</a>/</span>
+            }
+            else
+            {
+                <span>@part.Text/</span>
+            }
+
         }
     }
 </h3>
 
 @RenderBody()
+
+@section Scripts{
+    @RenderSection("Scripts", required: false)
+}
