@@ -1,0 +1,6 @@
+﻿@model IEnumerable<GasStantion.ViewModels.MenuItemViewModel>
+    
+@foreach (var item in Model)
+{
+    <li><a href="@Url.Action("Page","Pages",new {id=item.Id})">@item.Title</a></li>
+}

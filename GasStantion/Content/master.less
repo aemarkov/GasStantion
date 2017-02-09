@@ -112,7 +112,12 @@ nav {
         padding: 0;
     }
 
-    li {
+    li
+    {
+        display: inline-block;
+    }
+
+    li a {
         display: inline-block;
         padding: 10px;
         font-size: 1.5rem;
@@ -120,11 +125,15 @@ nav {
         transition: background-color 0.1s linear;
         border: 2px solid @background-color;
         cursor: pointer;
+        text-decoration: none;
+        color: #000;
     }
 
-    li:hover {
+    li a:hover {
         border: 2px solid @primary-color;
         background-color: #fef2be;
+        text-decoration: none;
+        color: #000;
     }
 }
 

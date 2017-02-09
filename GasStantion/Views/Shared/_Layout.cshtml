@@ -13,51 +13,19 @@
 <body>
     <div class="page-wrapper">
         <div class="my-container">
-            <div class="header">
-                <div class="header-content">
-                    <div class="row">
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-4 title">
-                            Заголовок
-                        </div>
-                        <div class="phone col-sm-4">
-                            <div class="label">Телефон</div>
-                            <div class="value">8(999)99-99-999</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @Html.Action("Header","Layout")
             <div class="row">
                 <div class="col-sm-3">
-                    <div class="fueld-price-block">
-                        <div class="title">
-                            ПИОНЕР
-                        </div>
-                        <div>
-                            <table>
-                                <tr>
-                                    <td class="fuel-name">92</td>
-                                    <td class="fuel-price">35.50</td>
-                                </tr>
-                                <tr>
-                                    <td class="fuel-name">92</td>
-                                    <td class="fuel-price">35.50</td>
-                                </tr>
-                                <tr>
-                                    <td class="fuel-name">92</td>
-                                    <td class="fuel-price">35.50</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+                    @Html.Action("Fuel","Layout")
                 </div>
                 <div class="col-sm-9">
                     <nav>
                         <ul>
-                            <li>Главная</li>
-                            <li>Новости</li>
-                            <li>Документы</li>
-                            <li>Контакты</li>
+                            <li><a href="@Url.Action("Index","Home")">Главная</a></li>
+                            <li><a href="@Url.Action("Index","News")">Новости</a></li>
+                            @Html.Action("Menu","Layout")
+                            <li><a href="@Url.Action("Index","Documents")">Документы</a></li>
+                            <li><a href="@Url.Action("Index","Contacts")">Контакты</a></li>
                         </ul>
                     </nav>
                     <hr/>

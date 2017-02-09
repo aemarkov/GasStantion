@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GasStantion.EntityFramework;
+using GasStantion.ViewModels;
 
 namespace GasStantion.Controllers
 {
@@ -10,21 +12,28 @@ namespace GasStantion.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                
+
+                var feebacks = context.UserFeedbacks
+                    .Where(x => x.IsShowOnMain)
+                    .OrderByDescending(x => x.Id)
+                    .ToList();
+
+                var news = context.News.OrderByDescending(x => x.Id)
+                    .Take(10)
+                    .ToList();
+
+                return View(new IndexViewModel()
+                {
+                    AboutText = "About",
+                    News = news,
+                    Feedbacks = feebacks
+                });
+            }
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

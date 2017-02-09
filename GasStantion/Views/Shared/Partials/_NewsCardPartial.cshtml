@@ -1,0 +1,18 @@
+﻿@using GasStantion.Util
+@model GasStantion.Models.News
+
+<a href="@Url.Action("News","News",new {id=Model.Id})" class="special-a">
+    <table class="news-card">
+        <tr>
+            <td>
+                <img src="@HtmlUtils.Image(Model.PreviewImageUrl)" />
+            </td>
+            <td class="content">
+                <h3>@Model.Title</h3>
+                <div>
+                    @HtmlUtils.Cut(Model.Text)
+                </div>
+            </td>
+        </tr>
+    </table>
+</a>

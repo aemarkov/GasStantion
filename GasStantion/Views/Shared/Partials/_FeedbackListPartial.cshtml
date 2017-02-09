@@ -1,0 +1,6 @@
+﻿@model IEnumerable<GasStantion.Models.UserFeedback>
+    
+@foreach (var feedback in Model)
+{
+    @Html.Partial("Partials/_FeedbackPartial",feedback)
+}

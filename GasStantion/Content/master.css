@@ -80,16 +80,23 @@ nav ul {
 }
 nav li {
   display: inline-block;
+}
+nav li a {
+  display: inline-block;
   padding: 10px;
   font-size: 1.5rem;
   transition: border 0.1s linear;
   transition: background-color 0.1s linear;
   border: 2px solid #fff;
   cursor: pointer;
+  text-decoration: none;
+  color: #000;
 }
-nav li:hover {
+nav li a:hover {
   border: 2px solid #fecf00;
   background-color: #fef2be;
+  text-decoration: none;
+  color: #000;
 }
 .page-wrapper {
   min-height: 100%;

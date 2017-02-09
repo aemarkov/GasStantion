@@ -1,113 +1,23 @@
-﻿<h2>Новости</h2>
+﻿@model GasStantion.ViewModels.IndexViewModel
 
-<a href="" class="special-a">
-    <table class="news-card">
-        <tr>
-            <td>
-                <img src="~/Images/picture.png"/>
-            </td>
-            <td class="content">
-                <h3>Заголовок новости</h3>
-                <div>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum, nunc vel facilisis rutrum, dui risus congue velit, vitae faucibus dolor est id neque. Quisque hendrerit sem vitae mi faucibus finibus.
-                </div>
-            </td>
-        </tr>
-    </table>
-</a>
+<h2>О компании</h2>
 
-<a href="" class="special-a">
-    <table class="news-card">
-        <tr>
-            <td>
-                <img src="~/Images/picture.png"/>
-            </td>
-            <td class="content">
-                <h3>Заголовок новости</h3>
-                <div>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum, nunc vel facilisis rutrum, dui risus congue velit, vitae faucibus dolor est id neque. Quisque hendrerit sem vitae mi faucibus finibus.
-                </div>
-            </td>
-        </tr>
-    </table>
-</a>
+@Html.Raw(Model.AboutText)
 
-<a href="" class="special-a">
-    <table class="news-card">
-        <tr>
-            <td>
-                <img src="~/Images/picture.png"/>
-            </td>
-            <td class="content">
-                <h3>Заголовок новости</h3>
-                <div>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum, nunc vel facilisis rutrum, dui risus congue velit, vitae faucibus dolor est id neque. Quisque hendrerit sem vitae mi faucibus finibus.
-                </div>
-            </td>
-        </tr>
-    </table>
-</a>
+<hr/>
 
-<a href="" class="special-a">
-    <table class="news-card">
-        <tr>
-            <td>
-                <img src="~/Images/picture.png"/>
-            </td>
-            <td class="content">
-                <h3>Заголовок новости</h3>
-                <div>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum, nunc vel facilisis rutrum, dui risus congue velit, vitae faucibus dolor est id neque. Quisque hendrerit sem vitae mi faucibus finibus.
-                </div>
-            </td>
-        </tr>
-    </table>
-</a>
+<h2>Новости</h2>
+
+@foreach (var news in Model.News)
+{
+    @Html.Partial("Partials/_NewsCardPartial", news)    
+}
 
 <hr/>
 
 <h2>Отзывы</h2>
 
-<a href="" class="special-a">
-    <table class="news-card">
-        <tr>
-            <td>
-                <img src="~/Images/user.png"/>
-            </td>
-            <td class="content">
-                <div>
-                    <img src="~/Images/star-fill.png" class="star"/>
-                    <img src="~/Images/star-fill.png" class="star"/>
-                    <img src="~/Images/star-empty.png" class="star"/>
-                    <img src="~/Images/star-empty.png" class="star"/>
-                    <img src="~/Images/star-empty.png" class="star"/>
-                </div>
-                <div>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum, nunc vel facilisis rutrum, dui risus congue velit, vitae faucibus dolor est id neque. Quisque hendrerit sem vitae mi faucibus finibus.
-                </div>
-            </td>
-        </tr>
-    </table>
-</a>
-
-<a href="" class="special-a">
-    <table class="news-card">
-        <tr>
-            <td>
-                <img src="~/Images/user.png" />
-            </td>
-            <td class="content">
-                <div>
-                    <img src="~/Images/star-fill.png" class="star" />
-                    <img src="~/Images/star-fill.png" class="star" />
-                    <img src="~/Images/star-empty.png" class="star" />
-                    <img src="~/Images/star-empty.png" class="star" />
-                    <img src="~/Images/star-empty.png" class="star" />
-                </div>
-                <div>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum, nunc vel facilisis rutrum, dui risus congue velit, vitae faucibus dolor est id neque. Quisque hendrerit sem vitae mi faucibus finibus.
-                </div>
-            </td>
-        </tr>
-    </table>
-</a>
+@foreach (var feedback in Model.Feedbacks)
+{
+    @Html.Partial("Partials/_FeedbackPartial", feedback)
+}

@@ -16,7 +16,7 @@ namespace GasStantion.EntityFramework
             return new ApplicationDbContext();
         }
 
-        public IDbSet<News> News { get; } 
+        public IDbSet<News> News { get; set; } 
         public IDbSet<Tag> Tags { get; set; }
         public IDbSet<Page> Pages { get; set; }
         public IDbSet<Document> Documents { get; set; } 
