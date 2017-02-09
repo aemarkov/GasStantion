@@ -1,0 +1,17 @@
+﻿@using GasStantion.Areas.Admin.ViewModels
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>
+    <a href="@Url.Action("Index", "Admin")">Администрирование</a>/
+    @if (ViewData[PathHelper.PathKey] != null)
+    {
+        foreach (PathPart part in ViewData[PathHelper.PathKey] as IEnumerable<PathPart>)
+        {
+            <span><a href="@part.Url">@part.Text</a>/</span>
+        }
+    }
+</h3>
+
+@RenderBody()

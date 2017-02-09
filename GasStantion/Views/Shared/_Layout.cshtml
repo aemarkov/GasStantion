@@ -13,10 +13,10 @@
 <body>
     <div class="page-wrapper">
         <div class="my-container">
-            @Html.Action("Header","Layout")
+            @Html.Action("Header","Layout", new { Area = "" })
             <div class="row">
                 <div class="col-sm-3">
-                    @Html.Action("Fuel","Layout")
+                    @Html.Action("Fuel","Layout", new { Area = "" })
                 </div>
                 <div class="col-sm-9">
                     <nav>
@@ -24,7 +24,7 @@
                             <li><a href="@Url.Action("Index","Home")">Главная</a></li>
                             <li><a href="@Url.Action("Index", "News")">Новости</a></li>
                             <li><a href="@Url.Action("Index","Fuel")">Топливо</a></li>
-                            @Html.Action("Menu","Layout")
+                            @Html.Action("Menu","Layout", new {Area=""})
                             <li><a href="@Url.Action("Index","Documents")">Документы</a></li>
                             <li><a href="@Url.Action("Contacts", "Home")">Контакты</a></li>
                             <li><a href="@Url.Action("Index","Feedback")">Отзывы</a></li>
@@ -41,7 +41,7 @@
 
     <footer>
         <div class="my-container">
-            АГЗС «Пионер»  @DateTime.Now.Year
+            АГЗС «Пионер»  @DateTime.Now.Year <a href="@Url.Action("Index","Admin", new {Area="Admin"})">Вход для сотрудников</a>
         </div>
     </footer>
 </body>
