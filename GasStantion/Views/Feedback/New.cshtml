@@ -21,7 +21,7 @@
 
     <div class="form-group">
         <label for="email">Отзыв</label>
-        @Html.TextAreaFor(x => x.Comment, new { @class = "form-control" })
+        @Html.TextAreaFor(x => x.Comment, new { @class = "form-control textarea" })
         @Html.ValidationMessageFor(x => x.Comment)
     </div>
 

@@ -52,6 +52,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -191,6 +193,63 @@
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="DbModel\AspNetRoles.cs">
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\AspNetUserClaims.cs">
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\AspNetUserLogins.cs">
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\AspNetUsers.cs">
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\ContactsInfoes.cs">
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\C__MigrationHistory.cs">
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\DocumentImages.cs">
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\Documents.cs">
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\Fuels.cs">
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\News.cs">
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\Pages.cs">
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\sysdiagrams.cs">
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\Tags.cs">
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\UserFeedbacks.cs">
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityFramework\ApplicationDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -215,9 +274,14 @@
     <Compile Include="Migrations\201702101641109_Add_Foreign_Key_To_DocumentImage.Designer.cs">
       <DependentUpon>201702101641109_Add_Foreign_Key_To_DocumentImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702102017529_Add_MaxLength_To_Feedback.cs" />
+    <Compile Include="Migrations\201702102017529_Add_MaxLength_To_Feedback.Designer.cs">
+      <DependentUpon>201702102017529_Add_MaxLength_To_Feedback.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ContactsInfo.cs" />
     <Compile Include="Models\RoleNames.cs" />
+    <Compile Include="Util\EmailService.cs" />
     <Compile Include="Util\HtmlUtils.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\Document.cs" />
@@ -247,6 +311,16 @@
     </Content>
     <Content Include="Content\master.min.css">
       <DependentUpon>master.css</DependentUpon>
+    </Content>
+    <Content Include="DbModel\model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>model.edmx</DependentUpon>
+      <LastGenOutput>model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DbModel\model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>model.edmx</DependentUpon>
+      <LastGenOutput>model.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -295,6 +369,14 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <EntityDeploy Include="DbModel\model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DbModel\model.edmx.diagram">
+      <DependentUpon>model.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\agzs - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\gasstantion - Web Deploy.pubxml" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
@@ -689,6 +771,12 @@
     <EmbeddedResource Include="Migrations\201702101641109_Add_Foreign_Key_To_DocumentImage.resx">
       <DependentUpon>201702101641109_Add_Foreign_Key_To_DocumentImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702102017529_Add_MaxLength_To_Feedback.resx">
+      <DependentUpon>201702102017529_Add_MaxLength_To_Feedback.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

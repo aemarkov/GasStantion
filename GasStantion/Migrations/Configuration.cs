@@ -43,12 +43,10 @@ namespace GasStantion.Migrations
             //    );
             //
 
-            if (System.Diagnostics.Debugger.IsAttached == false)
+            /*if (System.Diagnostics.Debugger.IsAttached == false)
             {
-
                 System.Diagnostics.Debugger.Launch();
-
-            }
+            }*/
 
             CreateContacts(context);
             CreateHomePageText(context);

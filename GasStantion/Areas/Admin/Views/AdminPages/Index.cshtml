@@ -12,9 +12,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Text)
-        </th>
         <th></th>
     </tr>
 
@@ -22,9 +19,6 @@
 <tr>
     <td>
         @Html.DisplayFor(modelItem => item.Title)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Text)
     </td>
     <td>
         @Html.ActionLink("Редактировать", "Edit", new { id = item.Id })

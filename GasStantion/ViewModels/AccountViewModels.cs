@@ -51,7 +51,6 @@ namespace GasStantion.Models
     {
         [Required(ErrorMessage = "Требуется адрес электронной почты")]
         [Display(Name = "Адрес электронной почты")]
-        [EmailAddress]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Требуется пароль")]

@@ -132,48 +132,92 @@ footer {
   background-color: #f5f5f5;
   line-height: 50px;
 }
-.news-card {
+.card {
+  color: #000;
+  text-decoration: none;
   display: block;
   width: 100%;
   background-color: #FFF;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   transition: box-shadow 0.1s linear;
-  height: 128px;
   margin: 20px 0 20px 0;
+  padding: 10px;
+  min-height: 128px;
+  box-sizing: border-box;
+}
+.card:hover,
+.card active,
+.card visited {
+  color: #000;
+  text-decoration: none;
+}
+.card:hover {
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+}
+.card .card-image {
+  display: inline-block;
+  float: left;
+  width: 128px;
+  height: 128px;
+  padding-right: 10px;
+  box-sizing: initial;
+  margin: -10px 0 0 -10px;
+}
+.card .title {
+  display: block;
+  font-size: 2rem;
+}
+.news-card {
+  color: #000;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  background-color: #FFF;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.1s linear;
+  margin: 20px 0 20px 0;
+  padding: 10px;
+  min-height: 128px;
+  box-sizing: border-box;
+  height: 128px;
+}
+.news-card:hover,
+.news-card active,
+.news-card visited {
+  color: #000;
+  text-decoration: none;
 }
 .news-card:hover {
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
 }
-.news-card img {
+.news-card .card-image {
+  display: inline-block;
+  float: left;
   width: 128px;
   height: 128px;
-  vertical-align: top;
-  margin-left: -4px;
-  margin-top: -1px;
+  padding-right: 10px;
+  box-sizing: initial;
+  margin: -10px 0 0 -10px;
 }
-.news-card .content {
-  box-sizing: border-box;
-  display: inline-block;
-  height: 100%;
-  overflow: hidden;
-  padding-left: 10px;
-}
-.special-a {
-  text-decoration: none;
-  color: #000;
-}
-.star {
-  width: 32px !important;
-  height: 32px !important;
-  margin: 3px;
+.news-card .title {
+  display: block;
+  font-size: 2rem;
 }
 .tags-panel {
   width: 100%;
   background-color: #fafafa;
   margin-top: 50px;
 }
-.feedback-user-name {
-  font-size: 1.8rem;
+.stars {
+  /*box-sizing: border-box;
+    width:100%;
+    padding-left: 128px;
+    height: 32px;*/
+}
+.star {
+  display: inline-block;
+  width: 32px !important;
+  height: 32px !important;
 }
 .contacts-element img {
   height: 64px;
@@ -198,4 +242,9 @@ dd {
 .image-preview {
   max-height: 150px;
   max-width: 150px;
+}
+.textarea {
+  width: 100%;
+  min-height: 200px;
+  resize: vertical;
 }

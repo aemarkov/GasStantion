@@ -12,17 +12,11 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using GasStantion.Models;
+using GasStantion.Util;
 
 namespace GasStantion
 {
-    public class EmailService : IIdentityMessageService
-    {
-        public Task SendAsync(IdentityMessage message)
-        {
-            // Подключите здесь службу электронной почты для отправки сообщения электронной почты.
-            return Task.FromResult(0);
-        }
-    }
+   
 
     public class SmsService : IIdentityMessageService
     {

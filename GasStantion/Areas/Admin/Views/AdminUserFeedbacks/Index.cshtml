@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<GasStantion.Models.UserFeedback>
 @using GasStantion.Areas.Admin.ViewModels
+@using GasStantion.Util
 @{
     ViewData.AddPath(Url.Action("Index", "AdminUserFeedbacks"), "Отзывы");
 }
@@ -35,7 +36,7 @@
             @Html.DisplayFor(modelItem => item.Stars)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Comment)
+            @HtmlUtils.Cut(item.Comment, 150)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsShowOnMain)

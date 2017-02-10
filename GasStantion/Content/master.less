@@ -191,53 +191,49 @@ footer {
 
 /////////////////////////////////// НОВОСТИ ///////////////////////////////////////////////////////
 
-.news-card {
+.card {
+
+    .no-a(#000);
+
     display: block;
     width: 100%;
     background-color: #FFF;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
     transition: box-shadow 0.1s linear;
-    height: 128px;
     margin: 20px 0 20px 0;
-
+    padding: 10px;
+    min-height: 128px;
+    box-sizing: border-box;
+  
     &:hover {
         box-shadow: 0 0 25px rgba(0,0,0,0.3);
     }
 
-    img
+    .card-image
     {
+        display: inline-block;
+        float: left;
         width: 128px;
         height: 128px;
-        vertical-align: top;
-        margin-left: -4px; //wtf fix
-        margin-top: -1px;
+        padding-right: 10px;
+        box-sizing: initial;
+        margin: -10px 0 0 -10px;
     }
 
-    .content
+    .title
     {
-        box-sizing: border-box;
-        display: inline-block;
-        height: 100%;
-        overflow: hidden;
-        padding-left: 10px;
+        display: block;
+        font-size: 2rem;
     }
 
 }
 
-.special-a
+//Карточка превью новостей - отличается фиксированной высоотой
+.news-card
 {
-    text-decoration: none;
-    color: #000;
+    .card;
+    height: 128px;
 }
-
-
-.star
-{
-    width: 32px !important;
-    height: 32px !important;
-    margin: 3px;
-}
-
 .tags-panel
 {
     width: 100%;
@@ -247,9 +243,19 @@ footer {
 
 //////////////////////////////////////////// ОТЗЫВЫ ///////////////////////////////////////////////
 
-.feedback-user-name
+.stars
 {
-    font-size: 1.8rem;
+    /*box-sizing: border-box;
+    width:100%;
+    padding-left: 128px;
+    height: 32px;*/
+}
+
+.star
+{
+    display: inline-block;
+    width: 32px !important;
+    height: 32px !important;
 }
 
 //////////////////////////////////////////// КОНТАКТЫ /////////////////////////////////////////////
@@ -295,4 +301,11 @@ dd
 {
     max-height: 150px;
     max-width: 150px;
+}
+
+.textarea
+{
+    width: 100%;
+    min-height: 200px;
+    resize: vertical;
 }

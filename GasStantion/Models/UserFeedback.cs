@@ -26,6 +26,7 @@ namespace GasStantion.Models
         /// текст отзыва
         /// </summary>
         [Display(Name = "Комментарий пользователя")]
+        [MaxLength(600, ErrorMessage = "Длина комментария не может превышать 600 символов")]
         public string Comment { get; set; }
 
         /// <summary>
