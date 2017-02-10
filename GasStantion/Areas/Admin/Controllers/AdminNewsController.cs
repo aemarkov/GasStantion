@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using GasStantion.EntityFramework;
 using GasStantion.Models;
+using GasStantion.Areas.Admin.ViewModels;
 
 namespace GasStantion.Areas.Admin.Controllers
 {
@@ -15,27 +16,30 @@ namespace GasStantion.Areas.Admin.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Admin/News
+        
         public ActionResult Index()
         {
             return View(db.News.ToList());
         }
-
-        // GET: Admin/News/Create
+         
         public ActionResult Create()
         {
             return View();
         }
-
-        // POST: Admin/News/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Text,PreviewImageUrl")] News news)
+        public ActionResult Create([Bind(Include = "Id,Title,Text,PreviewImageUrl")] News news, HttpPostedFileBase PreviewFile)
         {
+            var fileUrl = string.Empty;
+            if (PreviewFile != null || PreviewFile.ContentLength > 0)
+            {
+                fileUrl = FileUploader.UploadFile(PreviewFile);
+            }
+
             if (ModelState.IsValid)
             {
+                news.PreviewImageUrl = fileUrl;
                 db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -43,8 +47,7 @@ namespace GasStantion.Areas.Admin.Controllers
 
             return View(news);
         }
-
-        // GET: Admin/News/Edit/5
+        
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -58,10 +61,7 @@ namespace GasStantion.Areas.Admin.Controllers
             }
             return View(news);
         }
-
-        // POST: Admin/News/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+                
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Text,PreviewImageUrl")] News news)
@@ -74,8 +74,7 @@ namespace GasStantion.Areas.Admin.Controllers
             }
             return View(news);
         }
-
-        // GET: Admin/News/Delete/5
+        
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -89,8 +88,7 @@ namespace GasStantion.Areas.Admin.Controllers
             }
             return View(news);
         }
-
-        // POST: Admin/News/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
