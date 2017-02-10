@@ -1,20 +1,20 @@
-﻿@using GasStantion.Areas.Admin.ViewModels
-@model GasStantion.Models.News
+﻿@model GasStantion.Models.Fuel
+@using GasStantion.Areas.Admin.ViewModels
 
 @{
-    ViewData.AddPath(Url.Action("Index", "AdminNews"), "Новости");
+    ViewData.AddPath(Url.Action("Index", "AdminFuel"), "Топливо");
     ViewData.AddPath(null, "Удаление");
 }
 
+
 <h3>Вы уверены, что хотите удалить?</h3>
 <div>
-   
-    @using (Html.BeginForm())
-    {
+
+    @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            <input type="submit" value="Удалить" class="btn btn-default"/> |
             @Html.ActionLink("Назад", "Index")
         </div>
     }

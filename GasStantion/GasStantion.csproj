@@ -169,6 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminFuelController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminNewsController.cs" />
     <Compile Include="Areas\Admin\Util\PathHelper.cs" />
     <Compile Include="Areas\Admin\Util\PathPart.cs" />
@@ -254,9 +255,12 @@
     <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Areas\Admin\Views\AdminNews\Create.cshtml" />
     <Content Include="Areas\Admin\Views\AdminNews\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\AdminNews\Details.cshtml" />
     <Content Include="Areas\Admin\Views\AdminNews\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AdminNews\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminFuel\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminFuel\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminFuel\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminFuel\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
