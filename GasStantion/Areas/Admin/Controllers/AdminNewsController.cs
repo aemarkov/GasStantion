@@ -30,7 +30,7 @@ namespace GasStantion.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Text,PreviewImageUrl")] News news, HttpPostedFileBase PreviewFile)
+        public ActionResult Create([Bind(Include = "Id,Title,Text,PreviewImageUrl,ShortDescription")] News news, HttpPostedFileBase PreviewFile)
         {
             var fileUrl = string.Empty;
             if (PreviewFile != null && PreviewFile.ContentLength > 0)
@@ -65,7 +65,7 @@ namespace GasStantion.Areas.Admin.Controllers
                 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Text,PreviewImageUrl")] News news, HttpPostedFileBase PreviewFile)
+        public ActionResult Edit([Bind(Include = "Id,Title,Text,PreviewImageUrl,ShortDescription")] News news, HttpPostedFileBase PreviewFile)
         {            
             if (PreviewFile != null && PreviewFile.ContentLength > 0)
             {

@@ -215,6 +215,10 @@
     <Compile Include="Migrations\201702101641109_Add_Foreign_Key_To_DocumentImage.Designer.cs">
       <DependentUpon>201702101641109_Add_Foreign_Key_To_DocumentImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702102051132_AddShortDescriptionToNew.cs" />
+    <Compile Include="Migrations\201702102051132_AddShortDescriptionToNew.Designer.cs">
+      <DependentUpon>201702102051132_AddShortDescriptionToNew.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ContactsInfo.cs" />
     <Compile Include="Models\RoleNames.cs" />
@@ -688,6 +692,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702101641109_Add_Foreign_Key_To_DocumentImage.resx">
       <DependentUpon>201702101641109_Add_Foreign_Key_To_DocumentImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702102051132_AddShortDescriptionToNew.resx">
+      <DependentUpon>201702102051132_AddShortDescriptionToNew.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

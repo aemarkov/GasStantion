@@ -25,6 +25,12 @@ namespace GasStantion.Models
         [AllowHtml]
         public string Text { get; set; }
 
+
+        [Required(ErrorMessage = "Требуется краткое описание")]
+        [Display(Name = "Краткое описание")]
+        [MaxLength(150, ErrorMessage = "Длина краткого описания не должна превышать 150 символов")]
+        public string ShortDescription { get; set; }
+
         /// <summary>
         /// Url картинки новости
         /// </summary>
