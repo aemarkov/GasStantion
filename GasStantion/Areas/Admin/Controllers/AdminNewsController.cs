@@ -33,7 +33,7 @@ namespace GasStantion.Areas.Admin.Controllers
         public ActionResult Create([Bind(Include = "Id,Title,Text,PreviewImageUrl")] News news, HttpPostedFileBase PreviewFile)
         {
             var fileUrl = string.Empty;
-            if (PreviewFile != null || PreviewFile.ContentLength > 0)
+            if (PreviewFile != null && PreviewFile.ContentLength > 0)
             {
                 fileUrl = FileUploader.UploadFile(PreviewFile);
             }
@@ -65,8 +65,13 @@ namespace GasStantion.Areas.Admin.Controllers
                 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Text,PreviewImageUrl")] News news)
-        {
+        public ActionResult Edit([Bind(Include = "Id,Title,Text,PreviewImageUrl")] News news, HttpPostedFileBase PreviewFile)
+        {            
+            if (PreviewFile != null && PreviewFile.ContentLength > 0)
+            {
+                news.PreviewImageUrl = FileUploader.UploadFile(PreviewFile);
+            }
+            
             if (ModelState.IsValid)
             {
                 db.Entry(news).State = EntityState.Modified;
