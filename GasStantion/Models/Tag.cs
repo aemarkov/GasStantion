@@ -9,6 +9,7 @@ namespace GasStantion.Models
     public class Tag : Entity
     {
         [Required( ErrorMessage = "Требуется название тега")]
+        [Display(Name = "Название тега")]
         public string TagName { get; set; }
 
         /// <summary>

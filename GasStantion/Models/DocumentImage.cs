@@ -8,6 +8,7 @@ namespace GasStantion.Models
     public class DocumentImage : Entity
     {
         [Required(ErrorMessage = "Требуется файл изображения")]
-         public string ImageUrl { get; set; }
+        [Display(Name = "Файл")]
+        public string ImageUrl { get; set; }
     }
 }

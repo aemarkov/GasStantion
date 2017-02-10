@@ -12,22 +12,26 @@ namespace GasStantion.Models
         /// </summary>
         [Required(ErrorMessage = "Требуется имя")]
         [MaxLength(64, ErrorMessage = "Длина имени не может превышать 64 символа")]
+        [Display(Name = "Имя пользователя")]
         public string UserName { get; set; }
 
         /// <summary>
         /// Оценка пользователя (0-5)
         /// </summary>
         [Range(0,5,ErrorMessage = "Оценка должна быть в диапазоне от 0 до 5")]
+        [Display(Name = "Число звезд")]
         public int Stars { get; set; }
 
         /// <summary>
         /// текст отзыва
         /// </summary>
+        [Display(Name = "Комментарий пользователя")]
         public string Comment { get; set; }
 
         /// <summary>
         /// Показывать ли отзыв на главной странице
         /// </summary>
+        [Display(Name = "Показывать на главной странице?")]
         public bool IsShowOnMain { get; set; }
     }
 }

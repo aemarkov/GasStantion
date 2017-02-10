@@ -14,12 +14,14 @@ namespace GasStantion.Models
         /// </summary>
         [Required(ErrorMessage = "Требуется название страницы")]
         [MaxLength(64, ErrorMessage = "Длина названия не может превышать 64 символа")]
+        [Display(Name = "Заготовок страницы")]
         public string Title { get; set; }
 
         /// <summary>
         /// Полный текст страницы
         /// </summary>
         [Required(ErrorMessage = "Требуется текст страницы")]
+        [Display(Name = "Текст на странице")]
         public string Text { get; set; }
 
         /// <summary>

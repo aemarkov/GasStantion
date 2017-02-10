@@ -10,6 +10,7 @@ namespace GasStantion.Models
     public class Document : Entity
     {
         [Required(ErrorMessage = "Требуется название документа")]
+        [Display(Name = "Название документа")]
         public string DocumentName { get; set; }
 
         /// <summary>
