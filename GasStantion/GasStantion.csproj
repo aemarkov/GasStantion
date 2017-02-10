@@ -175,8 +175,12 @@
     <Compile Include="Areas\Admin\Util\FileUploader.cs" />
     <Compile Include="Areas\Admin\Util\PathHelper.cs" />
     <Compile Include="Areas\Admin\Util\PathPart.cs" />
+    <Compile Include="Areas\Admin\Util\RoleHelper.cs" />
+    <Compile Include="Areas\Admin\ViewModels\DeleteUserViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\EditDocumentViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\UserListItemViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminUsersController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\FuelController.cs" />
@@ -210,6 +214,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ContactsInfo.cs" />
+    <Compile Include="Models\RoleNames.cs" />
     <Compile Include="Util\HtmlUtils.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\Document.cs" />
@@ -273,6 +278,9 @@
     <Content Include="Areas\Admin\Views\AdminDocuments\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AdminDocuments\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AdminDocuments\Partials\_DocumentImagesPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUsers\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUsers\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUsers\Delete.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -638,6 +646,7 @@
     <Content Include="Views\Fuel\Type.cshtml" />
     <Content Include="Views\Feedback\Index.cshtml" />
     <Content Include="Views\Feedback\New.cshtml" />
+    <Content Include="Views\Shared\Partials\UserMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

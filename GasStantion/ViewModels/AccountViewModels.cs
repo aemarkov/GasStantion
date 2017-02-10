@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace GasStantion.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Требуется адрес электронной почты")]
         [Display(Name = "Адрес электронной почты")]
         public string Email { get; set; }
     }
@@ -28,7 +29,7 @@ namespace GasStantion.Models
         [Required]
         public string Provider { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Требуется код")]
         [Display(Name = "Код")]
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
@@ -41,19 +42,19 @@ namespace GasStantion.Models
 
     public class ForgotViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Требуется адрес электронной почты")]
         [Display(Name = "Адрес электронной почты")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Требуется адрес электронной почты")]
         [Display(Name = "Адрес электронной почты")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Требуется пароль")]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
@@ -64,39 +65,50 @@ namespace GasStantion.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Требуется адрес электронной почты")]
         [EmailAddress]
         [Display(Name = "Адрес электронной почты")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Требуется пароль")]
+        [StringLength(100, ErrorMessage = "Пароль содержать не менее {2} символов.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Подтверждение пароля")]
-        [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string ConfirmPassword { get; set; }
+
+
+        /// <summary>
+        /// Список возможных ролей
+        /// </summary>
+        public IEnumerable<SelectListItem> Roles { get; set; } 
+
+        /// <summary>
+        /// Id выбранной роли
+        /// </summary>
+        public string RoleId { get; set; }
     }
 
     public class ResetPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Требуется адрес электронной почты")]
         [EmailAddress]
         [Display(Name = "Адрес электронной почты")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Требуется пароль")]
+        [StringLength(100, ErrorMessage = "Пароль должен содержать не менее {2} символов.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Подтверждение пароля")]
-        [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
@@ -104,7 +116,7 @@ namespace GasStantion.Models
 
     public class ForgotPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Требуется адрес электронной почты")]
         [EmailAddress]
         [Display(Name = "Почта")]
         public string Email { get; set; }

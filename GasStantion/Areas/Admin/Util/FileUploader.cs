@@ -14,12 +14,15 @@ namespace GasStantion.Areas.Admin.ViewModels
         {
             string extension = Path.GetExtension(file.FileName);
             string filename = Guid.NewGuid().ToString() + extension;
-            string fullname = Path.Combine(uploadDir, filename);
-            string physName = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, fullname);
 
-            file.SaveAs(physName);
+            string uploadDirectory = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, uploadDir);
+            if (!Directory.Exists(uploadDirectory))
+                Directory.CreateDirectory(uploadDirectory);
 
-            return Path.Combine("\\", fullname);
+            string physPath = Path.Combine(uploadDirectory, filename);
+            file.SaveAs(physPath);
+
+            return Path.Combine("\\", uploadDir, filename);
         }
 
         //Удаляет файл

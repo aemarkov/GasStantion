@@ -1,5 +1,10 @@
-﻿using GasStantion.EntityFramework;
+﻿using System.Data.Entity.Validation;
+using System.Web;
+using GasStantion.EntityFramework;
 using GasStantion.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace GasStantion.Migrations
 {
@@ -14,6 +19,14 @@ namespace GasStantion.Migrations
         {
             AutomaticMigrationsEnabled = false;
         }
+
+        /*private ApplicationUserManager _userManager;
+        public ApplicationUserManager UserManager
+        {
+            get { return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+            private set { _userManager = value; }
+        }*/
+
 
         protected override void Seed(GasStantion.EntityFramework.ApplicationDbContext context)
         {
@@ -30,10 +43,22 @@ namespace GasStantion.Migrations
             //    );
             //
 
+            if (System.Diagnostics.Debugger.IsAttached == false)
+            {
+
+                System.Diagnostics.Debugger.Launch();
+
+            }
+
             CreateContacts(context);
             CreateHomePageText(context);
-
             context.SaveChanges();
+
+            CreateRoleIfNotExists(context, RoleNames.Admin);
+            CreateRoleIfNotExists(context, RoleNames.Moderator);
+            context.SaveChanges();
+
+            CreateUserIfotExists(context, "admin", "adminpass", RoleNames.Admin);
         }
 
         //Создает запись контактов
@@ -48,7 +73,7 @@ namespace GasStantion.Migrations
         //Создает текст для главной страницы
         private void CreateHomePageText(ApplicationDbContext context)
         {
-            if(!context.Pages.Any(x=>x.IsMainPage))
+            if (!context.Pages.Any(x => x.IsMainPage))
             {
                 context.Pages.Add(new Page()
                 {
@@ -56,6 +81,43 @@ namespace GasStantion.Migrations
                     Title = "Главная",
                     Text = "Текст на главной"
                 });
+            }
+        }
+
+        //Создает роль
+        private void CreateRoleIfNotExists(ApplicationDbContext context, string name)
+        {
+            if (!context.Roles.Any(x => x.Name == name))
+            {
+                context.Roles.Add(new IdentityRole() { Name = name });
+            }
+        }
+
+        //Создает пользователя
+        private void CreateUserIfotExists(ApplicationDbContext context, string username, string password, params string[] roles)
+        {
+            if (!context.Users.Any(u => u.UserName == username))
+            {
+                var userStore = new UserStore<ApplicationUser>(context);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                var user = new ApplicationUser { UserName = username, PhoneNumber = "" };
+
+                //Добавляем роли
+                if (roles != null)
+                {
+                    foreach (var roleName in roles)
+                    {
+                        var role = context.Roles.FirstOrDefault(x => x.Name == roleName);
+                        if (role != null)
+                        {
+                            user.Roles.Add(new IdentityUserRole() { RoleId = role.Id, UserId = user.Id });
+                        }
+                    }
+                }
+
+                userManager.Create(user, password);
+
+
             }
         }
     }

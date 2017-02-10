@@ -27,7 +27,8 @@
                             @Html.Action("Menu", "Layout", new { Area = "" })
                             <li><a href="@Url.Action("Index","Documents", new {Area=""})">Документы</a></li>
                             <li><a href="@Url.Action("Contacts", "Home", new {Area=""})">Контакты</a></li>
-                            <li><a href="@Url.Action("Index","Feedback", new {Area=""})">Отзывы</a></li>
+                            <li><a href="@Url.Action("Index", "Feedback", new {Area = ""})">Отзывы</a></li>
+                            @Html.Partial("Partials/UserMenu")
                         </ul>
                     </nav>
                     <hr />

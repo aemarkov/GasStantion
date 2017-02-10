@@ -1,0 +1,7 @@
+﻿
+
+@if (User.Identity.IsAuthenticated)
+{
+    <li><a href="@Url.Action("Index", "Admin", new {Area = "Admin"})">@User.Identity.Name</a></li>
+    <li><a href="@Url.Action("LogOff", "Account", new {Area = ""})">Выход</a></li>
+}
