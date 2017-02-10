@@ -8,21 +8,18 @@ using System.Web;
 using System.Web.Mvc;
 using GasStantion.EntityFramework;
 using GasStantion.Models;
-using GasStantion.Areas.Admin.ViewModels;
 
 namespace GasStantion.Areas.Admin.Controllers
 {
-    [Authorize(Roles = RoleNames.Admin + "," + RoleNames.Moderator)]
-    public class AdminNewsController : Controller
+    public class AdminPagesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
         
         public ActionResult Index()
         {
-            return View(db.News.ToList());
+            return View(db.Pages.ToList());
         }
-         
+        
         public ActionResult Create()
         {
             return View();
@@ -30,23 +27,16 @@ namespace GasStantion.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Text,PreviewImageUrl")] News news, HttpPostedFileBase PreviewFile)
+        public ActionResult Create([Bind(Include = "Id,Title,Text,IsMainPage")] Page page)
         {
-            var fileUrl = string.Empty;
-            if (PreviewFile != null || PreviewFile.ContentLength > 0)
-            {
-                fileUrl = FileUploader.UploadFile(PreviewFile);
-            }
-
             if (ModelState.IsValid)
             {
-                news.PreviewImageUrl = fileUrl;
-                db.News.Add(news);
+                db.Pages.Add(page);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(news);
+            return View(page);
         }
         
         public ActionResult Edit(int? id)
@@ -55,50 +45,41 @@ namespace GasStantion.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            Page page = db.Pages.Find(id);
+            if (page == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View(page);
         }
-                
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Text,PreviewImageUrl")] News news)
+        public ActionResult Edit([Bind(Include = "Id,Title,Text,IsMainPage")] Page page)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(news).State = EntityState.Modified;
+                db.Entry(page).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(news);
+            return View(page);
         }
-        
+                       
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            Page page = db.Pages.Find(id);
+            if (!page.IsMainPage)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                db.Pages.Remove(page);
+                db.SaveChanges();
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            else
             {
-                return HttpNotFound();
+                throw new HttpException(403, "Доступ запрещен");
             }
-            return View(news);
-        }
-        
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            News news = db.News.Find(id);
-            db.News.Remove(news);
-            db.SaveChanges();
             return RedirectToAction("Index");
-        }
+        }        
 
         protected override void Dispose(bool disposing)
         {
