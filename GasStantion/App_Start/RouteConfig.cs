@@ -13,11 +13,11 @@ namespace GasStantion
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
+            /*routes.MapRoute(
                 name: "DefaultWithArea",
                 url: "{namespaces}/{controller}/{action}/{id}",
                 defaults: new {Area="", controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+            );*/
 
             routes.MapRoute(
                 name: "Default",
