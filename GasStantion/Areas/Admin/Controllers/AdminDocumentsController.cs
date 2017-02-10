@@ -26,7 +26,7 @@ namespace GasStantion.Areas.Admin.Controllers
         // GET: Admin/AdminDocuments/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new EditDocumentViewModel());
         }
 
         // POST: Admin/AdminDocuments/Create
@@ -34,32 +34,18 @@ namespace GasStantion.Areas.Admin.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,DocumentName")] Document document)
+        public ActionResult Create(EditDocumentViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                UploadFiles(document, HttpContext.Request.Files);
+            if (!ModelState.IsValid)
+                return View(model);
 
-                db.Documents.Add(document);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            var document = new Document() {DocumentName = model.DocumentName};
 
-            return View(document);
+            db.Documents.Add(document);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
-        //Загружает файлы изображений для этого документа
-        private void UploadFiles(Document document, HttpFileCollectionBase files)
-        {
-            if (files == null || files.Count == 0)
-                return;
-
-            foreach (HttpPostedFileBase file in files)
-            {
-                var documentImage = new DocumentImage() {ImageUrl = FileUploader.UploadFile(file)};
-                document.Images.Add(documentImage);
-            }
-        }
 
         // GET: Admin/AdminDocuments/Edit/5
         public ActionResult Edit(int? id)
@@ -68,12 +54,19 @@ namespace GasStantion.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = db.Documents.Find(id);
-            if (document == null)
-            {
-                return HttpNotFound();
-            }
-            return View(document);
+
+            var model = db.Documents
+                .Where(x => x.Id == id)
+                .Select(x => new EditDocumentViewModel()
+                {
+                    Id = x.Id,
+                    DocumentName = x.DocumentName,
+                    Images = x.Images
+                })
+                .FirstOrDefault();
+                
+
+            return View(model);
         }
 
         // POST: Admin/AdminDocuments/Edit/5
@@ -81,15 +74,44 @@ namespace GasStantion.Areas.Admin.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,DocumentName")] Document document)
+        public ActionResult Edit(EditDocumentViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var document = db.Documents.Include(x => x.Images).FirstOrDefault(x => x.Id == model.Id);
+            if(document==null)
+                throw new HttpException(404, "Не найдено");
+
+            document.DocumentName = model.DocumentName;
+
+            //Загружаем изображение, если есть
+            if (model.UploadedImage != null && model.UploadedImage.ContentLength > 0)
             {
-                db.Entry(document).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var image = new DocumentImage() {ImageUrl = FileUploader.UploadFile(model.UploadedImage)};
+                document.Images.Add(image);
             }
-            return View(document);
+
+            //Сохраняем изменения
+            db.Entry(document).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Edit", "AdminDocuments",new {id=model.Id});
+        }
+
+        //Удалить загруженное изображение
+        public ActionResult RemoveImage(int id)
+        {
+            var image = db.DocumentImages.FirstOrDefault(x => x.Id == id);
+            if(image==null)
+                throw new HttpException(404,"Не найдено");
+
+            if (FileUploader.RemoveFile(image.ImageUrl))
+            {
+                db.DocumentImages.Remove(image);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Edit", "AdminDocuments", new { id = image.DocumentId });
         }
 
         // GET: Admin/AdminDocuments/Delete/5

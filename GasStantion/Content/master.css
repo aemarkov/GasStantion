@@ -195,3 +195,7 @@ dt {
 dd {
   margin: 0 !important;
 }
+.image-preview {
+  max-height: 150px;
+  max-width: 150px;
+}

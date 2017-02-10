@@ -1,0 +1,14 @@
+﻿@model  GasStantion.Areas.Admin.ViewModels.EditDocumentViewModel
+<table class="table">
+    <tr>
+        <th>Превью</th>
+        <th></th>
+    </tr>
+    @foreach (var image in Model.Images)
+    {
+        <tr>
+            <td><a href="@image.ImageUrl"><img class="image-preview" src="@image.ImageUrl" /></a></td>
+            <td><a href="@Url.Action("RemoveImage", "AdminDocuments", new {id = image.Id})">Удалить</a></td>
+        </tr>
+    }
+</table>
