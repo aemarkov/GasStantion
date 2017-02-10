@@ -174,6 +174,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminFuelController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminNewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminPagesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminUserFeedbacksController.cs" />
     <Compile Include="Areas\Admin\Util\FileUploader.cs" />
     <Compile Include="Areas\Admin\Util\PathHelper.cs" />
     <Compile Include="Areas\Admin\Util\PathPart.cs" />
@@ -274,6 +275,9 @@
     <Content Include="Areas\Admin\Views\AdminPages\Create.cshtml" />
     <Content Include="Areas\Admin\Views\AdminPages\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AdminPages\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUserFeedbacks\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUserFeedbacks\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUserFeedbacks\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
