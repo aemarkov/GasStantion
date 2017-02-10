@@ -1,0 +1,39 @@
+﻿@model IEnumerable<GasStantion.Models.Page>
+
+@using GasStantion.Areas.Admin.ViewModels
+@{
+    ViewData.AddPath(Url.Action("Index", "AdminPages"), "Страницы");
+}
+<p>
+    @Html.ActionLink("Создать страницу", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Text)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Text)
+    </td>
+    <td>
+        @Html.ActionLink("Редактировать", "Edit", new { id = item.Id })
+        @if (!item.IsMainPage)
+        {
+            @(" | ") @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+        }
+    </td>
+</tr>
+}
+
+</table>
