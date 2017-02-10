@@ -14,8 +14,7 @@ namespace GasStantion.Areas.Admin.Controllers
     public class AdminContactsInfoController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-                
-        // GET: Admin/AdminContactsInfo/Edit/5
+       
         public ActionResult Edit()
         {
             var contactsInfo = db.Contacts.FirstOrDefault();                        
@@ -25,10 +24,7 @@ namespace GasStantion.Areas.Admin.Controllers
             }
             return View(contactsInfo);
         }
-
-        // POST: Admin/AdminContactsInfo/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,CompanyName,Phone,Address,YandexMapUrl")] ContactsInfo contactsInfo)
