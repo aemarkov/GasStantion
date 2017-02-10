@@ -278,6 +278,14 @@
     <Compile Include="Migrations\201702102017529_Add_MaxLength_To_Feedback.Designer.cs">
       <DependentUpon>201702102017529_Add_MaxLength_To_Feedback.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702102051132_AddShortDescriptionToNew.cs" />
+    <Compile Include="Migrations\201702102051132_AddShortDescriptionToNew.Designer.cs">
+      <DependentUpon>201702102051132_AddShortDescriptionToNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702102226153_wtf.cs" />
+    <Compile Include="Migrations\201702102226153_wtf.Designer.cs">
+      <DependentUpon>201702102226153_wtf.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ContactsInfo.cs" />
     <Compile Include="Models\RoleNames.cs" />
@@ -771,8 +779,14 @@
     <EmbeddedResource Include="Migrations\201702101641109_Add_Foreign_Key_To_DocumentImage.resx">
       <DependentUpon>201702101641109_Add_Foreign_Key_To_DocumentImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702102051132_AddShortDescriptionToNew.resx">
+      <DependentUpon>201702102051132_AddShortDescriptionToNew.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702102017529_Add_MaxLength_To_Feedback.resx">
       <DependentUpon>201702102017529_Add_MaxLength_To_Feedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702102226153_wtf.resx">
+      <DependentUpon>201702102226153_wtf.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

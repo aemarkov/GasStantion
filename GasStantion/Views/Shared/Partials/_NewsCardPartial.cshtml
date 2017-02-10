@@ -4,5 +4,5 @@
 <a href="@Url.Action("News", "News", new {id = Model.Id})" class="news-card">
     <img src="@HtmlUtils.Image(Model.PreviewImageUrl)" class="card-image"/>
     <div class="title">@Model.Title</div>
-    @HtmlUtils.Cut(Model.Text)
+    @HtmlUtils.Cut(Model.ShortDescription)
 </a>
