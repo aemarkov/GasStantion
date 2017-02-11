@@ -10,6 +10,12 @@
     <script src="~/Scripts/ckeditor/ckeditor.js" type="text/javascript"></script>
     <script>
         CKEDITOR.replace('Text');
+        
+        $('#remove_image').click(function () {
+            $("#image_block").html('');
+            $('#PreviewImageUrl').val(null);
+        });
+
     </script>
 }
 
@@ -45,7 +51,15 @@
                 @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
             </div>
         </div>
-        
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Тэги</label>
+            <div class="col-md-12">
+                @Html.ListBox("TagIds", (IEnumerable<SelectListItem>)ViewBag.Tags, new {@class="form-control"})
+            </div>
+        </div>
+
+
         <div class="form-group">
             @Html.LabelFor(model => model.PreviewImageUrl, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-12">
@@ -56,11 +70,12 @@
 
         @Html.HiddenFor(m => m.PreviewImageUrl)
 
-        <div class="form-group">            
+        <div class="form-group" id="image_block">            
             <div class="col-md-12">
                 @if (!string.IsNullOrEmpty(Model.PreviewImageUrl))
                 {
                     <img src="@Model.PreviewImageUrl" class="img-responsive image-preview"/>
+                    <a href="javascript:void(0)" id="remove_image">Удалить изображение</a>
                 }
             </div>
         </div>

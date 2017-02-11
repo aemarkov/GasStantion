@@ -20,17 +20,18 @@ namespace GasStantion.Areas.Admin.Controllers
         
         public ActionResult Index()
         {
-            return View(db.News.ToList());
+            return View(db.News.OrderByDescending(x=>x.Id).ToList());
         }
          
         public ActionResult Create()
         {
+            LoadTags();
             return View();
         }
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Text,PreviewImageUrl,ShortDescription")] News news, HttpPostedFileBase PreviewFile)
+        public ActionResult Create([Bind(Include = "Id,Title,Text,PreviewImageUrl,ShortDescription")] News news, HttpPostedFileBase PreviewFile, IEnumerable<int> tagIds )
         {
             var fileUrl = string.Empty;
             if (PreviewFile != null && PreviewFile.ContentLength > 0)
@@ -41,11 +42,13 @@ namespace GasStantion.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 news.PreviewImageUrl = fileUrl;
+                news.Tags = db.Tags.Where(x => tagIds.Any(t => t == x.Id)).ToList();
                 db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+            LoadTags();
             return View(news);
         }
         
@@ -55,17 +58,20 @@ namespace GasStantion.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
+            News news = db.News.Include(x=>x.Tags).FirstOrDefault(x=>x.Id==id);
+            ViewBag.tagIds = news.Tags.Select(x => x.Id).ToList();
             if (news == null)
             {
                 return HttpNotFound();
             }
+
+            LoadTags();
             return View(news);
         }
                 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Text,PreviewImageUrl,ShortDescription")] News news, HttpPostedFileBase PreviewFile)
+        public ActionResult Edit([Bind(Include = "Id,Title,Text,PreviewImageUrl,ShortDescription")] News news, HttpPostedFileBase PreviewFile, IEnumerable<int> tagIds )
         {            
             if (PreviewFile != null && PreviewFile.ContentLength > 0)
             {
@@ -74,13 +80,38 @@ namespace GasStantion.Areas.Admin.Controllers
             
             if (ModelState.IsValid)
             {
-                db.Entry(news).State = EntityState.Modified;
+                var loadedNews = db.News.Include(x=>x.Tags).FirstOrDefault(x => x.Id == news.Id);
+                if(loadedNews==null)
+                    throw new HttpException(404,"Не найдено");
+
+                loadedNews.Tags = db.Tags.Where(x => tagIds.Any(t => t == x.Id)).ToList();
+                loadedNews.PreviewImageUrl = news.PreviewImageUrl;
+                loadedNews.Title = news.Title;
+                loadedNews.ShortDescription = news.ShortDescription;
+                loadedNews.Text = news.Text;
+
+                db.Entry(loadedNews).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            LoadTags();
+//            ViewBag.tagIds = news.Tags.Select(x => x.Id).ToList();
             return View(news);
         }
-        
+
+        //Загружает список тегов
+        private void LoadTags()
+        {
+            ViewBag.Tags = db.Tags
+                .Select(x => new SelectListItem()
+                {
+                    Text = x.TagName,
+                    Value = x.Id.ToString()
+                })
+                .ToList();
+        }
+
         public ActionResult Delete(int? id)
         {
             if (id == null)

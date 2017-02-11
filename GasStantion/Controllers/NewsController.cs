@@ -38,8 +38,9 @@ namespace GasStantion.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
+                ViewBag.Tag = context.Tags.FirstOrDefault(x => x.Id == id)?.TagName;
                 var news = context.News.Where(x => x.Tags.Any(t => t.Id == id)).ToList();
-                return View("Index",news);
+                return View(news);
             }
         }
     }

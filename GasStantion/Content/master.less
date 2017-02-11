@@ -209,16 +209,49 @@ footer {
         box-shadow: 0 0 25px rgba(0,0,0,0.3);
     }
 
+    //Кроп изображения
+    .card-image-wrapper
+    {
+        position: relative;
+        display: inline-block;
+        float: left;
+        height: 128px;
+        width: 128px;
+        //padding-right: 10px;
+        box-sizing: initial;
+        margin: -10px 10px 0 -10px;
+        overflow: hidden;
+
+            img
+            {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                height: 100%;
+                width: auto;
+                transform: translate(-50%,-50%);
+            }
+
+             img.portrait {
+              width: 100%;
+              height: auto;
+            }
+    }
+
+    //Просто изобрнажение    
     .card-image
     {
         display: inline-block;
         float: left;
-        width: 128px;
         height: 128px;
+        width: 128px;
         padding-right: 10px;
         box-sizing: initial;
         margin: -10px 0 0 -10px;
+        overflow: hidden;
     }
+
+   
 
     .title
     {

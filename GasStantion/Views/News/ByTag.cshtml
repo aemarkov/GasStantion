@@ -1,0 +1,16 @@
+﻿@model IEnumerable<GasStantion.Models.News>
+
+@if (Model != null && Model.Count() > 0)
+{
+
+    <h2>Новости по тегу "@ViewBag.Tag"</h2>
+
+    foreach (var news in Model)
+    {
+        @Html.Partial("Partials/_NewsCardPartial", news)
+    }
+}
+else
+{
+    <h2>По данному тегу новости не найдены</h2>
+}

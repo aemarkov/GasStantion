@@ -747,6 +747,7 @@
     <Content Include="Views\Feedback\Index.cshtml" />
     <Content Include="Views\Feedback\New.cshtml" />
     <Content Include="Views\Shared\Partials\UserMenu.cshtml" />
+    <Content Include="Views\News\ByTag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

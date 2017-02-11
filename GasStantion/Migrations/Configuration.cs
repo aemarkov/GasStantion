@@ -50,6 +50,13 @@ namespace GasStantion.Migrations
 
             CreateContacts(context);
             CreateHomePageText(context);
+
+            CreateTag(context, "Новости компании");
+            CreateTag(context, "Новости промышленности");
+            CreateTag(context, "Экология");
+            CreateTag(context, "Топливо");
+            CreateTag(context, "Разное");
+
             context.SaveChanges();
 
             CreateRoleIfNotExists(context, RoleNames.Admin);
@@ -117,6 +124,13 @@ namespace GasStantion.Migrations
 
 
             }
+        }
+
+        //Создает тег
+        private void CreateTag(ApplicationDbContext context, string tag)
+        {
+            if (!context.Tags.Any(x => x.TagName == tag))
+                context.Tags.Add(new Tag() {TagName = tag});
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace GasStantion.Models
 {
@@ -22,6 +23,7 @@ namespace GasStantion.Models
         /// </summary>
         [Required(ErrorMessage = "Требуется текст страницы")]
         [Display(Name = "Текст на странице")]
+        [AllowHtml]
         public string Text { get; set; }
 
         /// <summary>
