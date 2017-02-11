@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace GasStantion.Models
 {
@@ -22,6 +23,7 @@ namespace GasStantion.Models
         public string Address { get; set; }
 
         [Display(Name = "Ссылка на карту")]
+        [AllowHtml]
         public string YandexMapUrl { get; set; }
     }
 }
