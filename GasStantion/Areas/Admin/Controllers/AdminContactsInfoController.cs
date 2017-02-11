@@ -11,6 +11,7 @@ using GasStantion.Models;
 
 namespace GasStantion.Areas.Admin.Controllers
 {
+    [Authorize(Roles = RoleNames.Admin + "," + RoleNames.Moderator)]
     public class AdminContactsInfoController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

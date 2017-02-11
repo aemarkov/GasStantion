@@ -1,4 +1,5 @@
 ﻿@using GasStantion.Areas.Admin.ViewModels
+@using GasStantion.Models
 @{
 }
 
@@ -29,12 +30,15 @@
     </p>
 </div>
 
-<div class="col-md-4">
-    <h3>Страницы</h3>
-    <p>
-        <a class="btn btn-default" href="@Url.Action("Index", "AdminPages")">Редактировать &raquo;</a>
-    </p>
-</div>
+@if (User.IsInRole(RoleNames.Admin))
+{
+    <div class="col-md-4">
+        <h3>Страницы</h3>
+        <p>
+            <a class="btn btn-default" href="@Url.Action("Index", "AdminPages")">Редактировать &raquo;</a>
+        </p>
+    </div>
+}
 
 <div class="col-md-4">
     <h3>Отзывы</h3>
@@ -43,9 +47,12 @@
     </p>
 </div>
 
-<div class="col-md-4">
-    <h3>Пользователи</h3>
-    <p>
-        <a class="btn btn-default" href="@Url.Action("Index","AdminUsers")">Редактировать &raquo;</a>
-    </p>
-</div>
+@if (User.IsInRole(RoleNames.Admin))
+{
+    <div class="col-md-4">
+        <h3>Пользователи</h3>
+        <p>
+            <a class="btn btn-default" href="@Url.Action("Index", "AdminUsers")">Редактировать &raquo;</a>
+        </p>
+    </div>
+}
